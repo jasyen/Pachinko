@@ -10,7 +10,7 @@
 #define NUMBER_PER_LINE (3)
 
 size_t credits;
-int playedCredits;
+size_t playedCredits;
 char spunSymbols[NUMBER_PER_LINE];
 char symbols[NUMBER_OF_SYMBOLS];
 
@@ -29,17 +29,13 @@ enum eSymbol symbolsSpun[NUMBER_PER_LINE];
 
 bool EvaluateResults()
 {
+	credits -= playedCredits;
 	if (spunSymbols[0] == spunSymbols[1] && spunSymbols[0] == spunSymbols[2])
 	{
-		credits -= playedCredits;
 		credits += playedCredits * JACKPOT_MULTIPLIER;
 		return true;
 	}
-	else
-	{
-		credits -= playedCredits;
-		return false;
-	}
+	return false;
 }
 
 void Init() 
